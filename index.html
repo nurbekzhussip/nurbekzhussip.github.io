@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="shortcut icon" href="favicon.ico">
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons"
+        rel="stylesheet">
+  <title>Youtube statistics</title>
+
+</head>
+<body>
+<style>
+* {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+  
+  body {
+    background-color: #EAE9EC;
+    font-family: "Open Sans", sans-serif;
+  }
+  
+  .main {
+    background-color: #fff;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
+  }
+  .main .pagination {
+    display: block;
+    text-align: center;
+    margin: 20px 0;
+  }
+  .main .pagination span {
+    border: 1px solid #2876dd;
+    color: #2876dd;
+    border-radius: 0;
+    padding: 5px 20px;
+    text-align: center;
+  }
+  .main .pagination span:hover {
+    cursor: pointer;
+    border: 1px solid #fff;
+    color: #fff;
+    background-color: #2876dd;
+  }
+  .main .youtube__top {
+    border-bottom: 5px solid #EAE9EC;
+  }
+  .main .youtube__top h1 {
+    color: #666666;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+    padding: 30px 0;
+  }
+  .main .youtube__charts-category {
+    padding: 15px 10px;
+  }
+  .main .youtube__charts-category span {
+    background-color: #F0F0F0;
+    padding: 3px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+  }
+  .main .youtube__charts-category span.active {
+    font-weight: bold;
+    background-color: #D7D7D7;
+    margin: 0 10px;
+  }
+  .main .youtube__charts-statistic {
+    display: block;
+    padding: 10px 10px;
+  }
+  .main .youtube__charts-statistic .row {
+    margin: 0 !important;
+  }
+  .main .youtube__charts-statistic .row .statistics {
+    border: 1px solid #e7e7e7;
+  }
+  .main .youtube__charts-statistic .row .statistics img {
+    width: 200px !important;
+  }
+  .main .youtube__charts-items {
+    padding: 10px 10px;
+  }
+  .main .youtube__charts-items .row {
+    margin: 0;
+  }
+  .main .youtube__charts-items .row .item-video {
+    position: relative;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .main .youtube__charts-items .row .item-video .layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    justify-content: flex-end;
+    background: transparent;
+    transition: background 0.2s ease;
+    text-align: center;
+    /* box-shadow: 0 2px 24px rgba(168,175,196,.5); */
+  }
+  .main .youtube__charts-items .row .item-video .layer span {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-weight: bold;
+    width: auto;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 36px;
+    display: none;
+  }
+  .main .youtube__charts-items .row .item-video:hover .layer {
+    background-color: rgba(40, 78, 203, 0.8);
+  }
+  .main .youtube__charts-items .row .item-video:hover span {
+    display: block;
+  }
+  .main .youtube__charts-items .row .item-video:hover span:hover {
+    cursor: pointer;
+  }
+  .main .youtube__charts-items .row .item-video:hover .textBox span {
+    transform: translateX(calc(200px - 100%));
+  }
+  .main .youtube__charts-items .row .item-video .textBox {
+    height: 30px;
+    overflow: hidden;
+    line-height: 30px;
+    padding: 5px;
+    position: relative;
+  }
+  .main .youtube__charts-items .row .item-video .textBox span {
+    position: absolute;
+    white-space: nowrap;
+    transform: translateX(0);
+    transition: 1s;
+  }
+  .main .youtube__charts-items .row .item-video .total_info {
+    font-size: 12px;
+    color: #c0c0c0;
+  }
+  .main .youtube__charts-items .row .item-video .total_info span {
+    display: inline;
+    color: #c0c0c0;
+    font-size: 14px;
+  }
+  
+  .modal {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+  .modal .modal-content {
+    overflow-y: auto;
+    height: 450px;
+    margin-top: 100px;
+    border: 0;
+    border-radius: 0;
+    background-color: #fff;
+  }
+  .modal .modal-body {
+    padding: 10px 20px;
+  }
+  .modal .close {
+    position: absolute;
+    top: -10px;
+    right: 0;
+    font-size: 42px;
+    color: #fff;
+    z-index: 9999;
+  }
+</style>
+<script src="https://apis.google.com/js/api.js"></script>
+<script>
+
+  /**
+   * Sample JavaScript code for youtube.videos.list
+   * See instructions for running APIs Explorer code samples locally:
+   * https://developers.google.com/explorer-help/guides/code_samples#javascript
+   https://www.googleapis.com/youtube/v3/videos?part=contentDetails&chart=mostPopular&regionCode=IN&maxResults=25&key=AIzaSyAkg7cQyWWa0k0goRzUJy6hS2-Z3afb_8k
+   */
+
+  const categories = {
+          '1':'Film & Animation',
+          '2':'Autos & Vehicles',
+          '10':'Music',
+          '15':'Pets & Animals',
+          '17':'Sports',
+          '18':'Short Movies',
+          '19':'Travel & Events',
+          '20':'Gaming',
+          '21':'Videoblogging',
+          '22':'People & Blogs',
+          '23':'Comedy',
+          '24':'Entertainment',
+          '25':'News & Politics',
+          '26':'Howto & Style',
+          '27':'Education',
+          '28':'Science & Technology',
+          '29':'Nonprofits & Activism',
+          '30':'Movies',
+          '31':'Anime / Animation',
+          '32':'Action / Adventure',
+          '33':'Classics',
+          '34':'Comedy',
+          '35':'Documentary',
+          '36':'Drama',
+          '37':'Family',
+          '38':'Foreign',
+          '39':'Horror',
+          '40':'Sci Fi / Fantasy',
+          '41':'Thriller',
+          '42':'Shorts',
+          '43':'Shows',
+          '44':'Trailers'
+  }
+
+   async function getTrends(region='KZ'){
+    //const res = await fetch('https://www.googleapis.com/youtube/v3/videos?part=contentDetails&chart=mostPopular&regionCode=KZ&maxResults=24&key=AIzaSyAkg7cQyWWa0k0goRzUJy6hS2-Z3afb_8k')
+    const res = await fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode='+region+'&maxResults=24&key=AIzaSyAkg7cQyWWa0k0goRzUJy6hS2-Z3afb_8k')
+    const data =  await res.json()
+    let html = ''
+    data.items.map((item) => {
+      html+= `<div class="col-lg-3">
+              <div class="item-video">
+                <img src="`+item.snippet.thumbnails.standard.url+`" alt="`+item.snippet.localized.title+`">
+                <div class="layer">
+                  <span class="material-icons"  data-toggle="modal" data-target="#exampleModal">addchart</span>
+                </div>
+              <div class="textBox"><span>`+item.snippet.title+`</span></div>
+                <div class="total_info">
+                  <span><span class="material-icons">thumb_up</span> `+item.statistics.likeCount+`</span>
+                  <span><span class="material-icons">thumb_down</span> `+item.statistics.dislikeCount+`</span>
+                  <span><span class="material-icons">comment</span> `+item.statistics.commentCount+`</span>
+                  <span><span class="material-icons">visibility</span> `+item.statistics.viewCount+`</span>
+                </div>
+                </div>
+            </div>`;
+    });
+    document.getElementById("video__list").innerHTML = html
+   }
+
+  async function getNextPage(region='KZ'){
+    const res = await fetch('https://www.googleapis.com/youtube/v3/videos?pageToken=CBkQAA&part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode='+region+'&maxResults=24&key=AIzaSyAkg7cQyWWa0k0goRzUJy6hS2-Z3afb_8k')
+    const data =  await res.json()
+    let html = document.getElementById("video__list").value || ''
+    data.items.map((item) => {
+      html+= `<div class="col-lg-3">
+              <div class="item-video">
+                <img src="`+item.snippet.thumbnails.standard.url+`" alt="`+item.snippet.localized.title+`">
+                <div class="layer">
+                  <span class="material-icons"  data-toggle="modal" data-target="#exampleModal">addchart</span>
+                </div>
+              <div class="textBox"><span>`+item.snippet.title+`</span></div>
+                <div class="total_info">
+                  <span><span class="material-icons">thumb_up</span> `+item.statistics.likeCount+`</span>
+                  <span><span class="material-icons">thumb_down</span> `+item.statistics.dislikeCount+`</span>
+                  <span><span class="material-icons">comment</span> `+item.statistics.commentCount+`</span>
+                  <span><span class="material-icons">visibility</span> `+item.statistics.viewCount+`</span>
+                </div>
+                </div>
+            </div>`;
+    });
+    document.getElementById("video__list").innerHTML = html
+   }
+  getTrends()
+</script>
+  <!-- Modal -->
+  <div class="modal fade show" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">LABELCOM</h5>
+          <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>-->
+        </div>
+        <div class="modal-body">
+          <p>Category: Film</p>
+          <div class="modal__item">
+            <pre>date: "2020/10/02"
+subscribers: 4.32
+subscribersDelta: 0
+views: 644437513
+viewsDelta: 1152873
+
+Weekly Subscribers Gained for LABELCOM
+date: "2017/10/30"
+value: -27
+
+Weekly Video Views Gained for LABELCOM
+date: "2017/10/25"
+value: 8491
+
+Total Subscribers for LABELCOM (Monthly)
+date: "2020/09/01"
+value: 4090000
+
+Total Video Views for LABELCOM
+date: "2020/09/01"
+value: 585064888
+
+Total Subscribers for LABELCOM (Weekly)
+date: "2020/10/31"
+value: 4550000
+
+date: "2020/10/02"
+subscribers: 4.32
+subscribersDelta: 0
+views: 644437513
+viewsDelta: 1152873
+            </pre>
+          </div>
+        </div>
+        <!--<div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+        </div>-->
+      </div>
+    </div>
+  </div>
+
+  <div id="app"></div>
+
+  <div class="container">
+    <div class="main">
+      <div class="youtube__top">
+        <h1>Data Visualization: Youtube statistics in KZ</h1>
+      </div>
+
+      <div class="youtube__charts">
+
+        <!--<div class="youtube__charts-category">
+          <span class="active">Music</span>
+          <span>Music</span>
+        </div>-->
+
+        <div class="youtube__charts-statistic">
+              <div class="statistics">
+                <img src="src/Screenshot_1.png" alt="" class="chart__image" style="width: 400px">
+                <img src="src/Screenshot_1.png" alt="" class="chart__image" style="width: 400px">
+                <img src="src/Screenshot_1.png" alt="" class="chart__image" style="width: 400px">
+                <img src="src/Screenshot_1.png" alt="" class="chart__image" style="width: 400px">
+              </div>
+        </div>
+
+        <div class="youtube__charts-items">
+            <div class="row" id="video__list">
+              ...loading
+            <!--<div class="col-lg-3">
+              <div class="item-video">
+                <img src="https://i.ytimg.com/vi/ljgkFbfhiF8/sddefault.jpg" alt="">
+                <div class="layer">
+                  <span class="material-icons"  data-toggle="modal" data-target="#exampleModal">addchart</span>
+                </div>
+                <div class="textBox"><span>Никита Джигурда x Павел Дедищев | ЧТО БЫЛО ДАЛЬШЕ?</span></div>
+                <div class="total_likes">
+                  <span><span class="material-icons">thumb_up</span>12 </span>
+                  <span><span class="material-icons">thumb_down</span>15</span>
+                  <span><span class="material-icons">comment</span>15</span>
+                </div>
+              </div>
+            </div>-->
+
+            </div>
+          </div>
+
+
+      </div>
+
+      <div class="pagination">
+        <span onClick="getNextPage()">Загрузить еще</span>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -5,193 +5,35 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="shortcut icon" href="favicon.ico">
    <!-- Bootstrap CSS -->
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Icons"
         rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
   <title>Youtube statistics</title>
-
 </head>
 <body>
-<style>
-* {
-    padding: 0;
-    margin: 0;
-    width: 100%;
-  }
-  
-  body {
-    background-color: #EAE9EC;
-    font-family: "Open Sans", sans-serif;
-  }
-  
-  .main {
-    background-color: #fff;
-    padding-bottom: 20px;
-    margin-bottom: 40px;
-  }
-  .main .pagination {
-    display: block;
-    text-align: center;
-    margin: 20px 0;
-  }
-  .main .pagination span {
-    border: 1px solid #2876dd;
-    color: #2876dd;
-    border-radius: 0;
-    padding: 5px 20px;
-    text-align: center;
-  }
-  .main .pagination span:hover {
-    cursor: pointer;
-    border: 1px solid #fff;
-    color: #fff;
-    background-color: #2876dd;
-  }
-  .main .youtube__top {
-    border-bottom: 5px solid #EAE9EC;
-  }
-  .main .youtube__top h1 {
-    color: #666666;
-    font-weight: bold;
-    font-size: 16px;
-    text-align: center;
-    padding: 30px 0;
-  }
-  .main .youtube__charts-category {
-    padding: 15px 10px;
-  }
-  .main .youtube__charts-category span {
-    background-color: #F0F0F0;
-    padding: 3px 20px;
-    border-radius: 20px;
-    font-size: 14px;
-  }
-  .main .youtube__charts-category span.active {
-    font-weight: bold;
-    background-color: #D7D7D7;
-    margin: 0 10px;
-  }
-  .main .youtube__charts-statistic {
-    display: block;
-    padding: 10px 10px;
-  }
-  .main .youtube__charts-statistic .row {
-    margin: 0 !important;
-  }
-  .main .youtube__charts-statistic .row .statistics {
-    border: 1px solid #e7e7e7;
-  }
-  .main .youtube__charts-statistic .row .statistics img {
-    width: 200px !important;
-  }
-  .main .youtube__charts-items {
-    padding: 10px 10px;
-  }
-  .main .youtube__charts-items .row {
-    margin: 0;
-  }
-  .main .youtube__charts-items .row .item-video {
-    position: relative;
-    margin-bottom: 20px;
-    overflow: hidden;
-  }
-  .main .youtube__charts-items .row .item-video .layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1000;
-    justify-content: flex-end;
-    background: transparent;
-    transition: background 0.2s ease;
-    text-align: center;
-    /* box-shadow: 0 2px 24px rgba(168,175,196,.5); */
-  }
-  .main .youtube__charts-items .row .item-video .layer span {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #fff;
-    font-weight: bold;
-    width: auto;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 36px;
-    display: none;
-  }
-  .main .youtube__charts-items .row .item-video:hover .layer {
-    background-color: rgba(40, 78, 203, 0.8);
-  }
-  .main .youtube__charts-items .row .item-video:hover span {
-    display: block;
-  }
-  .main .youtube__charts-items .row .item-video:hover span:hover {
-    cursor: pointer;
-  }
-  .main .youtube__charts-items .row .item-video:hover .textBox span {
-    transform: translateX(calc(200px - 100%));
-  }
-  .main .youtube__charts-items .row .item-video .textBox {
-    height: 30px;
-    overflow: hidden;
-    line-height: 30px;
-    padding: 5px;
-    position: relative;
-  }
-  .main .youtube__charts-items .row .item-video .textBox span {
-    position: absolute;
-    white-space: nowrap;
-    transform: translateX(0);
-    transition: 1s;
-  }
-  .main .youtube__charts-items .row .item-video .total_info {
-    font-size: 12px;
-    color: #c0c0c0;
-  }
-  .main .youtube__charts-items .row .item-video .total_info span {
-    display: inline;
-    color: #c0c0c0;
-    font-size: 14px;
-  }
-  
-  .modal {
-    background-color: rgba(0, 0, 0, 0.6);
-  }
-  .modal .modal-content {
-    overflow-y: auto;
-    height: 450px;
-    margin-top: 100px;
-    border: 0;
-    border-radius: 0;
-    background-color: #fff;
-  }
-  .modal .modal-body {
-    padding: 10px 20px;
-  }
-  .modal .close {
-    position: absolute;
-    top: -10px;
-    right: 0;
-    font-size: 42px;
-    color: #fff;
-    z-index: 9999;
-  }
+<style type="text/css">
+path { 
+stroke: steelblue;
+stroke-width: 2;
+fill: none;
+}
+
+.axis path,
+.axis line {
+fill: none;
+stroke: grey;
+stroke-width: 1;
+shape-rendering: crispEdges;
+}
 </style>
+
 <script src="https://apis.google.com/js/api.js"></script>
 <script>
+window.addEventListener("load", function(){
 
-  /**
-   * Sample JavaScript code for youtube.videos.list
-   * See instructions for running APIs Explorer code samples locally:
-   * https://developers.google.com/explorer-help/guides/code_samples#javascript
-   https://www.googleapis.com/youtube/v3/videos?part=contentDetails&chart=mostPopular&regionCode=IN&maxResults=25&key=AIzaSyAkg7cQyWWa0k0goRzUJy6hS2-Z3afb_8k
-   */
 
   const categories = {
           '1':'Film & Animation',
@@ -228,7 +70,7 @@
           '44':'Trailers'
   }
 
-   async function getTrends(region='KZ'){
+  async function getTrends(region='KZ'){
     //const res = await fetch('https://www.googleapis.com/youtube/v3/videos?part=contentDetails&chart=mostPopular&regionCode=KZ&maxResults=24&key=AIzaSyAkg7cQyWWa0k0goRzUJy6hS2-Z3afb_8k')
     const res = await fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode='+region+'&maxResults=24&key=AIzaSyAkg7cQyWWa0k0goRzUJy6hS2-Z3afb_8k')
     const data =  await res.json()
@@ -248,91 +90,233 @@
                   <span><span class="material-icons">visibility</span> `+item.statistics.viewCount+`</span>
                 </div>
                 </div>
-            </div>`;
+            </div>`; 
     });
     document.getElementById("video__list").innerHTML = html
+    return data
    }
+   document.querySelector(".loader").style.display = "none"
+  
+   
+Promise.all([getTrends()])
+   .then((data) => {
 
-  async function getNextPage(region='KZ'){
-    const res = await fetch('https://www.googleapis.com/youtube/v3/videos?pageToken=CBkQAA&part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode='+region+'&maxResults=24&key=AIzaSyAkg7cQyWWa0k0goRzUJy6hS2-Z3afb_8k')
-    const data =  await res.json()
-    let html = document.getElementById("video__list").value || ''
-    data.items.map((item) => {
-      html+= `<div class="col-lg-3">
-              <div class="item-video">
-                <img src="`+item.snippet.thumbnails.standard.url+`" alt="`+item.snippet.localized.title+`">
-                <div class="layer">
-                  <span class="material-icons"  data-toggle="modal" data-target="#exampleModal">addchart</span>
-                </div>
-              <div class="textBox"><span>`+item.snippet.title+`</span></div>
-                <div class="total_info">
-                  <span><span class="material-icons">thumb_up</span> `+item.statistics.likeCount+`</span>
-                  <span><span class="material-icons">thumb_down</span> `+item.statistics.dislikeCount+`</span>
-                  <span><span class="material-icons">comment</span> `+item.statistics.commentCount+`</span>
-                  <span><span class="material-icons">visibility</span> `+item.statistics.viewCount+`</span>
-                </div>
-                </div>
-            </div>`;
-    });
-    document.getElementById("video__list").innerHTML = html
-   }
-  getTrends()
+var margin = {top: 20, right: 30, bottom: 40, left: 50},
+    width = 460 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+//by view
+// append the svg object to the body of the page
+var svg = d3.select("#statisticsByView")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Add X axis
+var x = d3.scaleLinear()
+    .domain([0, 10000000])
+    .range([ 0, width]);
+  svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x))
+    .selectAll("text")
+      .attr("transform", "translate(-10,0)rotate(-45)")
+      .style("text-anchor", "end");
+
+  // Y axis
+  var y = d3.scaleBand()
+    .range([ 0, height ])
+    .domain(data[0].items.map(function(d) { return d.snippet.title; }))
+    .padding(.1);
+  svg.append("g")
+    .call(d3.axisLeft(y))
+
+    var tooltip = d3.select("body")
+    .append("div")
+    .attr("id", "mytooltip")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("display", "none")
+
+    function onMouseOver(d,i) {
+        d3.select(this)
+            .style("cursor", "pointer")
+            .attr('class','highlight');
+
+        d3.select("#mytooltip")
+            .style("top", (d3.event.pageY-10)+"px")
+            .style("left", (d3.event.pageX+20)+"px")
+
+            .style("display", "block")//set style to it
+            .html(d3.select(this).attr('data-title')+"<br>"+"viewCount: "+d3.select(this).attr('data-viewCount'))
+      }
+
+    function onMouseOut(d,i) {
+        d3.select(this)
+            .attr('class','bar');
+
+        d3.select("#mytooltip")
+            .style("display", "none")
+      }
+
+
+  //Bars
+  svg.selectAll("myRect")
+    .data(data[0].items)
+    .enter()
+    .append("rect")
+    .attr("x", x(0) )
+    .attr("y", function(d) { return y(d.snippet.title); })
+    .attr("width", function(d) { return x(d.statistics.viewCount); })
+    .attr("data-title", function(d){return d.snippet.title})
+    .attr("data-publishedAt", function(d){return d.snippet.publishedAt;})
+    .attr("data-viewCount", function(d){return d.statistics.viewCount;})
+    .attr("height", y.bandwidth() )
+    .attr("fill", "#2876DD")
+    .on("mouseover", onMouseOver)
+    .on("mouseout", onMouseOut)
+
+//by like
+// append the svg object to the body of the page
+var svg2 = d3.select("#statisticsByLike")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Add X axis
+var x2 = d3.scaleLinear()
+    .domain([0, 500000])
+    .range([ 0, width]);
+  svg2.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x2))
+    .selectAll("text")
+      .attr("transform", "translate(-10,0)rotate(-45)")
+      .style("text-anchor", "end");
+
+  // Y axis
+  var y2 = d3.scaleBand()
+    .range([ 0, height ])
+    .domain(data[0].items.map(function(d) { return d.snippet.title; }))
+    .padding(.1);
+  svg2.append("g")
+    .call(d3.axisLeft(y2))
+
+  //Bars
+  svg2.selectAll("myRect")
+    .data(data[0].items)
+    .enter()
+    .append("rect")
+    .attr("x", x2(0) )
+    .attr("y", function(d) { return y2(d.snippet.title); })
+    .attr("width", function(d) { return x2(d.statistics.likeCount); })
+    .attr("data-title", function(d){return d.snippet.title})
+    .attr("data-publishedAt", function(d){return d.snippet.publishedAt;})
+    .attr("data-likeCount", function(d){return d.statistics.likeCount;})
+    .attr("height", y2.bandwidth() )
+    .attr("fill", "#2876DD")
+
+//by dislikeCount
+// append the svg object to the body of the page
+var svg3 = d3.select("#statisticsByDislike")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Add X axis
+var x3 = d3.scaleLinear()
+    .domain([0, 10000])
+    .range([ 0, width]);
+  svg3.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x3))
+    .selectAll("text")
+      .attr("transform", "translate(-10,0)rotate(-45)")
+      .style("text-anchor", "end");
+
+  // Y axis
+  var y3 = d3.scaleBand()
+    .range([ 0, height ])
+    .domain(data[0].items.map(function(d) { return d.snippet.title; }))
+    .padding(.1);
+  svg3.append("g")
+    .call(d3.axisLeft(y3))
+
+  //Bars
+  svg3.selectAll("myRect")
+    .data(data[0].items)
+    .enter()
+    .append("rect")
+    .attr("x", x3(0) )
+    .attr("y", function(d) { return y3(d.snippet.title); })
+    .attr("width", function(d) { return x3(d.statistics.dislikeCount); })
+    .attr("data-title", function(d){return d.snippet.title})
+    .attr("data-publishedAt", function(d){return d.snippet.publishedAt;})
+    .attr("data-dislikeCount", function(d){return d.statistics.dislikeCount;})
+    .attr("height", y3.bandwidth() )
+    .attr("fill", "#2876DD")
+
+
+//by comment
+// append the svg object to the body of the page
+var svg4 = d3.select("#statisticsByComment")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Add X axis
+var x4 = d3.scaleLinear()
+    .domain([0, 10000])
+    .range([ 0, width]);
+  svg4.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x3))
+    .selectAll("text")
+      .attr("transform", "translate(-10,0)rotate(-45)")
+      .style("text-anchor", "end");
+
+  // Y axis
+  var y4 = d3.scaleBand()
+    .range([ 0, height ])
+    .domain(data[0].items.map(function(d) { return d.snippet.title; }))
+    .padding(.1);
+  svg4.append("g")
+    .call(d3.axisLeft(y4))
+
+  //Bars
+  svg4.selectAll("myRect")
+    .data(data[0].items)
+    .enter()
+    .append("rect")
+    .attr("x", x4(0) )
+    .attr("y", function(d) { return y4(d.snippet.title); })
+    .attr("width", function(d) { return x4(d.statistics.commentCount); })
+    .attr("data-title", function(d){return d.snippet.title})
+    .attr("data-publishedAt", function(d){return d.snippet.publishedAt;})
+    .attr("data-commentCount", function(d){return d.statistics.commentCount;})
+    .attr("height", y4.bandwidth() )
+    .attr("fill", "#2876DD")
+  })
+    })
+
+  
 </script>
-  <!-- Modal -->
-  <div class="modal fade show" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">LABELCOM</h5>
-          <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>-->
-        </div>
-        <div class="modal-body">
-          <p>Category: Film</p>
-          <div class="modal__item">
-            <pre>date: "2020/10/02"
-subscribers: 4.32
-subscribersDelta: 0
-views: 644437513
-viewsDelta: 1152873
 
-Weekly Subscribers Gained for LABELCOM
-date: "2017/10/30"
-value: -27
-
-Weekly Video Views Gained for LABELCOM
-date: "2017/10/25"
-value: 8491
-
-Total Subscribers for LABELCOM (Monthly)
-date: "2020/09/01"
-value: 4090000
-
-Total Video Views for LABELCOM
-date: "2020/09/01"
-value: 585064888
-
-Total Subscribers for LABELCOM (Weekly)
-date: "2020/10/31"
-value: 4550000
-
-date: "2020/10/02"
-subscribers: 4.32
-subscribersDelta: 0
-views: 644437513
-viewsDelta: 1152873
-            </pre>
-          </div>
-        </div>
-        <!--<div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-        </div>-->
-      </div>
+    <div class="loader">
+      <div class="lds-facebook"><div></div><div></div><div></div></div>
     </div>
-  </div>
-
-  <div id="app"></div>
 
   <div class="container">
     <div class="main">
@@ -342,37 +326,112 @@ viewsDelta: 1152873
 
       <div class="youtube__charts">
 
-        <!--<div class="youtube__charts-category">
-          <span class="active">Music</span>
-          <span>Music</span>
-        </div>-->
+        <div class="float-right">
+          <!-- <select id="country" name="country" class="form-control">
+                <option value="AZ">Azerbaijan</option>
+                <option value="AT">Austria</option>
+                <option value="BY">Belarus</option>
+                <option value="BE">Belgium</option>
+                <option value="BA">Bosnia and Herzegovina</option>
+                <option value="BG">Bulgaria</option>
+                <option value="HR">Croatia</option>
+                <option value="CZ">Czech Republic</option>
+                <option value="DK">Denmark</option>
+                <option value="EE">Estonia</option>
+                <option value="FI">Finland</option>
+                <option value="FR">France</option>
+                <option value="GE">Georgia</option>
+                <option value="DE">Germany</option>
+                <option value="GB">Great Britain</option>
+                <option value="GR">Greece</option>
+                <option value="HU">Hungary</option>
+                <option value="IS">Iceland</option>
+                <option value="IE">Ireland</option>
+                <option value="IT">Italy</option>
+                <option value="LV">Latvia</option>
+                <option value="LT">Lithuania</option>
+                <option value="LU">Luxembourg</option>
+                <option value="MK">Macedonia</option>
+                <option value="ME">Montenegro</option>
+                <option value="NL">Netherlands</option>
+                <option value="NO">Norway</option>
+                <option value="PL">Poland</option>
+                <option value="PT">Portugal</option>
+                <option value="RO">Romania</option>
+                <option value="RS">Serbia</option>
+                <option value="SK">Slovakia</option>
+                <option value="SI">Slovenia</option>
+                <option value="ES">Spain</option>
+                <option value="SE">Sweden</option>
+                <option value="CH">Switzerland</option>
+                <option value="UA">Ukraine</option>
+                <option value="BH">Bahrain</option>
+                <option value="HK">Hong Kong</option>
+                <option value="IN">India</option>
+                <option value="ID">Indonesia</option>
+                <option value="IQ">Iraq</option>
+                <option value="IL">Israel</option>
+                <option value="JP">Japan</option>
+                <option value="JO">Jordan</option>
+                <option value="KZ">Kazakhstan</option>
+                <option value="KW">Kuwait</option>
+                <option value="LB">Lebanon</option>
+                <option value="MY">Malaysia</option>
+                <option value="OM">Oman</option>
+                <option value="PK">Pakistan</option>
+                <option value="PH">Philippines</option>
+                <option value="QA">Qatar</option>
+                <option value="RU">Russia</option>
+                <option value="SG">Singapore</option>
+                <option value="SA">Saudi Arabia</option>
+                <option value="KR">South Korea</option>
+                <option value="TW">Taiwan</option>
+                <option value="TH">Thailand</option>
+                <option value="TR">Turkey</option>
+                <option value="AE">United Arab Emirates</option>
+                <option value="VN">Vietnam</option>
+                <option value="YE">Yemen</option>
+                <option value="CA">Canada</option>
+                <option value="CR">Costa Rica</option>
+                <option value="SV">El Salvador</option>
+                <option value="GT">Guatemala</option>
+                <option value="HN">Honduras</option>
+                <option value="JM">Jamaica</option>
+                <option value="MX">Mexico</option>
+                <option value="NI">Nicaragua</option>
+                <option value="PA">Panama</option>
+                <option value="PR">Puerto Rico</option>
+                <option value="US">United States</option>
+                <option value="AR">Argentina</option>
+                <option value="BO">Bolivia</option>
+                <option value="BR">Brazil</option>
+                <option value="CL">Chile</option>
+                <option value="CO">Colombia</option>
+                <option value="EC">Ecuador</option>
+                <option value="PE">Peru</option>
+                <option value="UY">Uruguay</option>
+                <option value="AU">Australia</option>
+                <option value="NZ">New Zealand</option>
+        </select> -->
+        </div>
+        
 
         <div class="youtube__charts-statistic">
-              <div class="statistics">
-                <img src="src/Screenshot_1.png" alt="" class="chart__image" style="width: 400px">
-                <img src="src/Screenshot_1.png" alt="" class="chart__image" style="width: 400px">
-                <img src="src/Screenshot_1.png" alt="" class="chart__image" style="width: 400px">
-                <img src="src/Screenshot_1.png" alt="" class="chart__image" style="width: 400px">
-              </div>
+          <div class="row">
+            <div class="statistics col-lg-6" id="statisticsByView"></div>
+            <div class="statistics col-lg-6" id="statisticsByLike"></div>
+            <div class="statistics col-lg-6" id="statisticsByDislike"></div>
+            <div class="statistics col-lg-6" id="statisticsByComment"></div>
+          </div>
         </div>
+
 
         <div class="youtube__charts-items">
             <div class="row" id="video__list">
               ...loading
-            <!--<div class="col-lg-3">
-              <div class="item-video">
-                <img src="https://i.ytimg.com/vi/ljgkFbfhiF8/sddefault.jpg" alt="">
-                <div class="layer">
-                  <span class="material-icons"  data-toggle="modal" data-target="#exampleModal">addchart</span>
-                </div>
-                <div class="textBox"><span>Никита Джигурда x Павел Дедищев | ЧТО БЫЛО ДАЛЬШЕ?</span></div>
-                <div class="total_likes">
-                  <span><span class="material-icons">thumb_up</span>12 </span>
-                  <span><span class="material-icons">thumb_down</span>15</span>
-                  <span><span class="material-icons">comment</span>15</span>
-                </div>
-              </div>
-            </div>-->
+              
+              <div class="svgContainer"></div>
+
 
             </div>
           </div>
@@ -381,15 +440,123 @@ viewsDelta: 1152873
       </div>
 
       <div class="pagination">
-        <span onClick="getNextPage()">Загрузить еще</span>
+        <!-- <span onClick="getNextPage()">Загрузить еще</span> -->
       </div>
     </div>
 
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <!-- <script src="//d3js.org/d3.v3.min.js"></script> -->
+<!--   <script src="http://d3js.org/d3.v3.min.js"></script>
+ -->
+  <script>
+let myPromise = new Promise((resolve,reject) => {
+  var xobj = new XMLHttpRequest();
+  xobj.overrideMimeType("application/json");
+  xobj.open('GET', window.location.origin + "/data.json", true);
+  xobj.onreadystatechange = function () {
+    if (xobj.readyState == 4 && xobj.status == "200") {
+      //myJsonData = JSON.parse(xobj.responseText)
+      resolve(JSON.parse(xobj.responseText))
+    }
+  };
+  xobj.send(null);
+})
+
+/* myPromise.then((data) => {
+
+
+}) */
+// set the dimensions and margins of the graph
+/* var margin = {top: 20, right: 20, bottom: 80, left: 100},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+// parse the date / time
+var parseTime = d3.timeParse("%d");
+
+// set the ranges
+var x = d3.scaleTime().range([0, width]);
+var y = d3.scaleLinear().range([height, 0]);
+
+// define the line
+var valueline = d3.line()
+    .x(function(d) { 
+      //console.log('value',d.date)
+      return x(d.date); })
+    .y(function(d) { return y(d.views); });
+// define the line
+var valueline2 = d3.line()
+    .x(function(d) { return x(d.date); })
+    .y(function(d) { return y(d.views); });
+  
+// append the svg obgect to the body of the page
+// appends a 'group' element to 'svg'
+// moves the 'group' element to the top left margin
+var svg = d3.select(".svgContainer").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+function draw(data, country) {
+  
+  var data = data[country];
+  
+  // format the data
+  data.forEach(function(d) {
+      //d.date = d.date
+      //d.date = parseTime(d.date);
+      console.log('aad',d.date)
+      //d.views = d.views;
+      //d.viewsDelta = d.viewsDelta;
+  });
+  
+  // sort years ascending
+   data.sort(function(a, b){
+    return a["date"]-b["date"];
+	})
+ 
+  // Scale the range of the data
+  x.domain(d3.extent(data, function(d) { 
+    return d.date; }));
+  y.domain([0, d3.max(data, function(d) {
+	  return d.views; })]);
+  
+  // Add the valueline path.
+  svg.append("path")
+      .data([data])
+      .attr("class", "line")
+      .attr("d", valueline);
+  // Add the valueline path.
+  svg.append("path")
+      .data([data])
+      .attr("class", "line")
+      .attr("d", valueline2);  
+  // Add the X Axis
+  svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+  // Add the Y Axis
+  svg.append("g")
+      .call(d3.axisLeft(y));
+  }
+// Get the data
+
+d3.json("http://dv/data.json", function(error, data) {
+  draw(data, "table");
+}); */
 
 
 
+
+
+
+    </script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>

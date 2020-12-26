@@ -299,17 +299,17 @@ const bubbleDatasetChild = data[0].items.map((i) => {return {Name:i.snippet.loca
 
 console.log('b',bubbleDatasetChild)
         
-dataset = {
+const bubbleDataset = {
             "children": bubbleDatasetChild
         };
 
         
-console.log('d',dataset)
+console.log('d',bubbleDataset)
 
         var diameter = 600;
          color = d3.scaleOrdinal(d3.schemeCategory20);
 
-        var bubble = d3.pack(dataset)
+        var bubble = d3.pack(bubbleDataset)
             .size([diameter, diameter])
             .padding(1.5);
 
@@ -319,7 +319,7 @@ console.log('d',dataset)
             .attr("height", diameter)
             .attr("class", "bubble");
 
-        var nodes = d3.hierarchy(dataset)
+        var nodes = d3.hierarchy(bubbleDataset)
             .sum(function(d) { return d.Count; });
 
         var node = svg3.selectAll(".node")

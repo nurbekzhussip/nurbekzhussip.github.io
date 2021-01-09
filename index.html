@@ -29,8 +29,8 @@
 
     /* chart */
     #chart {
-        height: 800px;
-        margin: 0 auto;
+      height: 400px;
+      margin: 50px;
         position: relative;
         display: block;
         width: 1200px;
@@ -58,13 +58,15 @@
         text-align: center;
         list-style-type: none;
     }
-</style>
 
+    .myCircle:hover {
+  stroke: black;
+}
+</style>
 <script src="https://apis.google.com/js/api.js"></script>
 <script>
 window.addEventListener("load", function(){
-
-
+//categories
   const categories = {
           '1':'Film & Animation',
           '2':'Autos & Vehicles',
@@ -128,12 +130,13 @@ window.addEventListener("load", function(){
     document.getElementById("video__list").innerHTML = html
     return data
    }
-   document.querySelector(".loader").style.display = "none"
+   
   
    
 Promise.all([getTrends()])
    .then((data) => {
-     console.log(data)
+    document.querySelector(".loader").style.display = "none"
+    console.log(data)
 
     var byCategory = []
     var mydata = data[0].items.map((i) => {byCategory[i.snippet.categoryId] = (byCategory[i.snippet.categoryId])?byCategory[i.snippet.categoryId]+1:1})
@@ -148,7 +151,7 @@ Promise.all([getTrends()])
     var height = 800;
 
     // a circle chart needs a radius
-    var radius = Math.min(width, height) / 2;
+    var radius = Math.min(width, height) / 4;
 
     // legend dimensions
     var legendRectSize = 25; // defines the size of the colored squares in legend
@@ -163,7 +166,7 @@ Promise.all([getTrends()])
         .attr('width', width) // set the width of the svg element we just added
         .attr('height', height) // set the height of the svg element we just added
         .append('g') // append 'g' element to the svg element
-        .attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')'); // our reference is now to the 'g' element. centerting the 'g' element to the svg element
+        .attr('transform', 'translate(' + (width / 4) + ',' + (height / 4) + ')'); // our reference is now to the 'g' element. centerting the 'g' element to the svg element
 
     var arc = d3.arc()
         .innerRadius(0) // none for pie chart
@@ -244,7 +247,7 @@ Promise.all([getTrends()])
         .attr('transform', function(d, i) {
             var height = legendRectSize + legendSpacing; // height of element is the height of the colored square plus the spacing
             var offset =  height * color.domain().length / 2; // vertical offset of the entire legend = height of a single element & half the total number of elements
-            var horz = 18 * legendRectSize; // the legend is shifted to the left to make room for the text
+            var horz = 9 * legendRectSize; // the legend is shifted to the left to make room for the text
             var vert = i * height - offset; // the top of the element is hifted up or down from the center using the offset defiend earlier and the index of the current element 'i'
             return 'translate(' + horz + ',' + vert + ')'; //return translation
         });
@@ -295,31 +298,33 @@ Promise.all([getTrends()])
         .text(function(d) { return d; });
 
 
-const bubbleDatasetChild = data[0].items.map((i) => {return {Name:i.snippet.localized.title, Count:i.statistics.viewCount}})
+const bubbleDatasetChild = data[0].items.map((i, index) => {
+  return {
+    Id:index+1,
+    Name:i.snippet.localized.title, 
+    Count: 50-(index+1),
+    Info:'Views:'+i.statistics.viewCount+' | Likes: ' + i.statistics.likeCount + ' | ' + ' Comments:' + i.statistics.commentCount + ' | Title: ' + i.snippet.localized.title
+  }
+})
+//const bubbleDatasetChild2 = data[0].items.map((i) => {return {Name:i.snippet.localized.title, Count:i.statistics.likeCount}})
+//const bubbleDatasetChild3 = data[0].items.map((i) => {return {Name:i.snippet.localized.title, Count:i.statistics.commentCount}})
 
-console.log('b',bubbleDatasetChild)
-        
-dataset = {
-            "children": bubbleDatasetChild
-        };
 
-        
-console.log('d',dataset)
-
+       function bubbleChartF(bubbleDataset, idName){
         var diameter = 600;
          color = d3.scaleOrdinal(d3.schemeCategory20);
 
-        var bubble = d3.pack(dataset)
+        var bubble = d3.pack(bubbleDataset)
             .size([diameter, diameter])
             .padding(1.5);
 
-        var svg3 = d3.select("#bubble")
+        var svg3 = d3.select(idName)
             .append("svg")
             .attr("width", diameter)
             .attr("height", diameter)
             .attr("class", "bubble");
 
-        var nodes = d3.hierarchy(dataset)
+        var nodes = d3.hierarchy(bubbleDataset)
             .sum(function(d) { return d.Count; });
 
         var node = svg3.selectAll(".node")
@@ -336,18 +341,19 @@ console.log('d',dataset)
 
         node.append("title")
             .text(function(d) {
-                return d.Name + ": " + d.Count;
+                return d.data.Info;
             });
 
         node.append("circle")
             .attr("r", function(d) {
+              console.log('radius',d)
                 return d.r;
             })
             .style("fill", function(d,i) {
                 return color(i);
             });
 
-        node.append("text")
+        /* node.append("text")
             .attr("dy", ".2em")
             .style("text-anchor", "middle")
             .text(function(d) {
@@ -357,24 +363,37 @@ console.log('d',dataset)
             .attr("font-size", function(d){
                 return d.r/5;
             })
-            .attr("fill", "white");
+            .attr("fill", "white"); */
 
         node.append("text")
-            .attr("dy", "1.3em")
+            .attr("dy", "0.4em")
             .style("text-anchor", "middle")
             .text(function(d) {
-                return d.data.Count;
+                return d.data.Id;
             })
             .attr("font-family",  "Gill Sans", "Gill Sans MT")
             .attr("font-size", function(d){
-                return d.r/5;
+                return d.r;
             })
             .attr("fill", "white");
 
         d3.select(self.frameElement)
             .style("height", diameter + "px");
+       }
 
 
+       bubbleChartF({
+            "children": bubbleDatasetChild
+        }, '#bubble')
+/* 
+        bubbleChartF({
+            "children": bubbleDatasetChild2
+        }, '#bubble2')
+
+        bubbleChartF({
+            "children": bubbleDatasetChild3
+        }, '#bubble3')
+ */
 /* 
 var margin = {top: 20, right: 30, bottom: 40, left: 50},
     width = 460 - margin.left - margin.right,
@@ -584,6 +603,109 @@ var x4 = d3.scaleLinear()
     .attr("height", y4.bandwidth() )
     .attr("fill", "#2876DD")*/
   }) 
+
+
+
+  
+// set the dimensions and margins of the graph
+var margin = {top: 20, right: 30, bottom: 20, left: 60},
+    width = 700 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz_3")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+//Read the data
+d3.csv("Nov.csv",
+
+  // When reading the csv, I must format variables:
+  function(d){
+    return { date : d3.timeParse("%Y-%m-%d")(d.date), value : d.value }
+  },
+
+  // Now I can use this dataset:
+  function(data) {
+
+    // Add X axis --> it is a date format
+    var x = d3.scaleTime()
+      .domain(d3.extent(data, function(d) { return d.date; }))
+      .range([ 0, width ]);
+    svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+    // Add Y axis
+    var y = d3.scaleLinear()
+      .domain( [0, 140000])
+      .range([ height, 0 ]);
+    svg.append("g")
+      .call(d3.axisLeft(y));
+
+    // Add the line
+    svg.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "black")
+      .attr("stroke-width", 1.5)
+      .attr("d", d3.line()
+        .curve(d3.curveCatmullRom.alpha(0.5)) // Just add that to have a curve instead of segments
+        .x(function(d) { return x(d.date) })
+        .y(function(d) { return y(d.value) })
+        )
+
+    // create a tooltip
+    var Tooltip = d3.select("#my_dataviz_3")
+      .append("div")
+      .style("opacity", 0)
+      .attr("class", "tooltip")
+      .style("background-color", "white")
+      .style("border", "solid")
+      .style("border-width", "2px")
+      .style("border-radius", "5px")
+      .style("padding", "5px")
+
+      // Three function that change the tooltip when user hover / move / leave a cell
+      var mouseover = function(d) {
+        Tooltip
+          .style("opacity", 1)
+          .style("display","block")
+      }
+      var mousemove = function(d) {
+        Tooltip
+          .html("Exact value: " + d.value)
+          .style("left", (d3.mouse(this)[0]+70) + "px")
+          .style("top", (d3.mouse(this)[100]) + "px")
+      }
+      var mouseleave = function(d) {
+        Tooltip
+          .style("opacity", 0)
+          .style("display","none")
+      }
+
+    // Add the points
+    svg
+      .append("g")
+      .selectAll("dot")
+      .data(data)
+      .enter()
+      .append("circle")
+        .attr("class", "myCircle")
+        .attr("cx", function(d) { return x(d.date) } )
+        .attr("cy", function(d) { return y(d.value) } )
+        .attr("r", 8)
+        .attr("stroke", "#69b3a2")
+        .attr("stroke-width", 3)
+        .attr("fill", "white")
+        .on("mouseover", mouseover)
+        .on("mousemove", mousemove)
+        .on("mouseleave", mouseleave)
+})
 })
 
   
@@ -601,24 +723,30 @@ var x4 = d3.scaleLinear()
 
       <div class="youtube__charts">
         
-
         <div class="youtube__charts-statistic">
           <div class="row">
             <div class="statistics col-lg-12">
+              <h5 style="text-align: center;">Most popular video by Ranking</h5>
               <div id="bubble"></div>
             </div>
+           
             <div class="statistics col-lg-12">
+              <h5 style="text-align: center;">Distribution By categories</h5>
               <div id="chart"></div>
             </div>
             <div class="statistics col-lg-12">
+              <h5 style="text-align: center;">Weekly stats by channel Navalny</h5>
               <button onclick="update('var1')" class="btn btn-primary">Subscribers</button>
               <button onclick="update('var2')" class="btn btn-primary">Views</button>
+              <a href="https://www.youtube.com/c/%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B9%D0%9D%D0%B0%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9" target="_blank">Channel link</a>
               <div id="my_dataviz_2"></div>
             </div>
-            <div class="statistics col-lg-6" id="statisticsByView"></div>
-            <div class="statistics col-lg-6" id="statisticsByLike"></div>
-            <div class="statistics col-lg-6" id="statisticsByDislike"></div>
-            <div class="statistics col-lg-6" id="statisticsByComment"></div>
+
+            <div class="statistics col-lg-12">
+              <h5 style="text-align: center;">Yandex wordstat results <a href="https://wordstat.yandex.kz/#!/?words=%D0%BD%D0%B0%D0%B2%D0%B0%D0%BB%D1%8C%D0%BD%D1%8B%D0%B9">here</a></h5>
+              <div id="my_dataviz_3"></div>
+            </div>
+            
           </div>
         </div>
 
@@ -628,7 +756,6 @@ var x4 = d3.scaleLinear()
               ...loading
               
               <div class="svgContainer"></div>
-
 
             </div>
           </div>

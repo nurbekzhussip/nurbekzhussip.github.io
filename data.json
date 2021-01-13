@@ -1,214 +1,214 @@
 {
-    "table": [
-      {
-        "date": "2020/11/22",
-        "subscribersDelta": 0,
-        "subscribers": 4.7,
-        "viewsDelta": 2530235,
-        "views": 740786242
-      },
-      {
-        "date": "2020/11/23",
-        "subscribersDelta": 10000,
-        "subscribers": 4.71,
-        "viewsDelta": 1890211,
-        "views": 742676453
-      },
-      {
-        "date": "2020/11/24",
-        "subscribersDelta": 0,
-        "subscribers": 4.71,
-        "viewsDelta": 1435209,
-        "views": 744111662
-      },
-      {
-        "date": "2020/11/25",
-        "subscribersDelta": 10000,
-        "subscribers": 4.72,
-        "viewsDelta": 1210563,
-        "views": 745322225
-      },
-      {
-        "date": "2020/11/26",
-        "subscribersDelta": 0,
-        "subscribers": 4.72,
-        "viewsDelta": 1100161,
-        "views": 746422386
-      },
-      {
-        "date": "2020/11/27",
-        "subscribersDelta": 10000,
-        "subscribers": 4.73,
-        "viewsDelta": 1055062,
-        "views": 747477448
-      },
-      {
-        "date": "2020/11/28",
-        "subscribersDelta": 0,
-        "subscribers": 4.73,
-        "viewsDelta": 1014432,
-        "views": 748491880
-      },
-      {
-        "date": "2020/11/29",
-        "subscribersDelta": 10000,
-        "subscribers": 4.74,
-        "viewsDelta": 945704,
-        "views": 749437584
-      },
-      {
-        "date": "2020/11/30",
-        "subscribersDelta": 0,
-        "subscribers": 4.74,
-        "viewsDelta": 1001674,
-        "views": 750439258
-      },
-      {
-        "date": "2020/12/01",
-        "subscribersDelta": 0,
-        "subscribers": 4.74,
-        "viewsDelta": 834735,
-        "views": 751273993
-      },
-      {
-        "date": "2020/12/02",
-        "subscribersDelta": 10000,
-        "subscribers": 4.75,
-        "viewsDelta": 744077,
-        "views": 752018070
-      },
-      {
-        "date": "2020/12/03",
-        "subscribersDelta": 0,
-        "subscribers": 4.75,
-        "viewsDelta": 754230,
-        "views": 752772300
-      },
-      {
-        "date": "2020/12/04",
-        "subscribersDelta": 0,
-        "subscribers": 4.75,
-        "viewsDelta": 1767233,
-        "views": 754539533
-      },
-      {
-        "date": "2020/12/05",
-        "subscribersDelta": 10000,
-        "subscribers": 4.76,
-        "viewsDelta": 1069155,
-        "views": 755608688
-      },
-      {
-        "date": "2020/12/06",
-        "subscribersDelta": 0,
-        "subscribers": 4.76,
-        "viewsDelta": 1293524,
-        "views": 756902212
-      },
-      {
-        "date": "2020/12/07",
-        "subscribersDelta": 10000,
-        "subscribers": 4.77,
-        "viewsDelta": 1015932,
-        "views": 757918144
-      },
-      {
-        "date": "2020/12/08",
-        "subscribersDelta": 0,
-        "subscribers": 4.77,
-        "viewsDelta": 805646,
-        "views": 758723790
-      },
-      {
-        "date": "2020/12/09",
-        "subscribersDelta": 0,
-        "subscribers": 4.77,
-        "viewsDelta": 750152,
-        "views": 759473942
-      },
-      {
-        "date": "2020/12/10",
-        "subscribersDelta": 20000,
-        "subscribers": 4.79,
-        "viewsDelta": 6315084,
-        "views": 765789026
-      },
-      {
-        "date": "2020/12/11",
-        "subscribersDelta": 10000,
-        "subscribers": 4.8,
-        "viewsDelta": 4289280,
-        "views": 770078306
-      },
-      {
-        "date": "2020/12/12",
-        "subscribersDelta": 10000,
-        "subscribers": 4.81,
-        "viewsDelta": 2844075,
-        "views": 772922381
-      },
-      {
-        "date": "2020/12/13",
-        "subscribersDelta": 10000,
-        "subscribers": 4.82,
-        "viewsDelta": 2316638,
-        "views": 775239019
-      },
-      {
-        "date": "2020/12/14",
-        "subscribersDelta": 10000,
-        "subscribers": 4.83,
-        "viewsDelta": 1956255,
-        "views": 777195274
-      },
-      {
-        "date": "2020/12/15",
-        "subscribersDelta": 0,
-        "subscribers": 4.83,
-        "viewsDelta": 1530129,
-        "views": 778725403
-      },
-      {
-        "date": "2020/12/16",
-        "subscribersDelta": 10000,
-        "subscribers": 4.84,
-        "viewsDelta": 1436031,
-        "views": 780161434
-      },
-      {
-        "date": "2020/12/17",
-        "subscribersDelta": 10000,
-        "subscribers": 4.85,
-        "viewsDelta": 1120355,
-        "views": 781281789
-      },
-      {
-        "date": "2020/12/18",
-        "subscribersDelta": 0,
-        "subscribers": 4.85,
-        "viewsDelta": 1244017,
-        "views": 782525806
-      },
-      {
-        "date": "2020/12/19",
-        "subscribersDelta": 10000,
-        "subscribers": 4.86,
-        "viewsDelta": 1129178,
-        "views": 783654984
-      },
-      {
-        "date": "2020/12/20",
-        "subscribersDelta": 0,
-        "subscribers": 4.86,
-        "viewsDelta": 1131108,
-        "views": 784786092
-      },
-      {
-        "date": "2020/12/21",
-        "subscribersDelta": 0,
-        "subscribers": 0,
-        "viewsDelta": 297854,
-        "views": 785083946
-      }
-    ]
+"table": [
+    {
+      "date": "2020/12/15",
+      "subscribersDelta": 0,
+      "subscribers": 4.83,
+      "viewsDelta": 1530129,
+      "views": 778725403
+    },
+    {
+      "date": "2020/12/16",
+      "subscribersDelta": 10000,
+      "subscribers": 4.84,
+      "viewsDelta": 1436031,
+      "views": 780161434
+    },
+    {
+      "date": "2020/12/17",
+      "subscribersDelta": 10000,
+      "subscribers": 4.85,
+      "viewsDelta": 1120355,
+      "views": 781281789
+    },
+    {
+      "date": "2020/12/18",
+      "subscribersDelta": 0,
+      "subscribers": 4.85,
+      "viewsDelta": 1244017,
+      "views": 782525806
+    },
+    {
+      "date": "2020/12/19",
+      "subscribersDelta": 10000,
+      "subscribers": 4.86,
+      "viewsDelta": 1129178,
+      "views": 783654984
+    },
+    {
+      "date": "2020/12/20",
+      "subscribersDelta": 0,
+      "subscribers": 4.86,
+      "viewsDelta": 1131108,
+      "views": 784786092
+    },
+    {
+      "date": "2020/12/21",
+      "subscribersDelta": 10000,
+      "subscribers": 4.87,
+      "viewsDelta": 1126230,
+      "views": 785912322
+    },
+    {
+      "date": "2020/12/22",
+      "subscribersDelta": 0,
+      "subscribers": 4.87,
+      "viewsDelta": 1069871,
+      "views": 786982193
+    },
+    {
+      "date": "2020/12/23",
+      "subscribersDelta": 10000,
+      "subscribers": 4.88,
+      "viewsDelta": 2285824,
+      "views": 789268017
+    },
+    {
+      "date": "2020/12/24",
+      "subscribersDelta": 0,
+      "subscribers": 4.88,
+      "viewsDelta": 1264709,
+      "views": 790532726
+    },
+    {
+      "date": "2020/12/25",
+      "subscribersDelta": 10000,
+      "subscribers": 4.89,
+      "viewsDelta": 1982362,
+      "views": 792515088
+    },
+    {
+      "date": "2020/12/26",
+      "subscribersDelta": 0,
+      "subscribers": 4.89,
+      "viewsDelta": 1620705,
+      "views": 794135793
+    },
+    {
+      "date": "2020/12/27",
+      "subscribersDelta": 10000,
+      "subscribers": 4.9,
+      "viewsDelta": 1316979,
+      "views": 795452772
+    },
+    {
+      "date": "2020/12/28",
+      "subscribersDelta": 0,
+      "subscribers": 4.9,
+      "viewsDelta": 1369196,
+      "views": 796821968
+    },
+    {
+      "date": "2020/12/29",
+      "subscribersDelta": 10000,
+      "subscribers": 4.91,
+      "viewsDelta": 1159363,
+      "views": 797981331
+    },
+    {
+      "date": "2020/12/30",
+      "subscribersDelta": 0,
+      "subscribers": 4.91,
+      "viewsDelta": 1032765,
+      "views": 799014096
+    },
+    {
+      "date": "2020/12/31",
+      "subscribersDelta": 20000,
+      "subscribers": 4.93,
+      "viewsDelta": 7295942,
+      "views": 806310038
+    },
+    {
+      "date": "2021/01/01",
+      "subscribersDelta": 20000,
+      "subscribers": 4.95,
+      "viewsDelta": 6387556,
+      "views": 812697594
+    },
+    {
+      "date": "2021/01/02",
+      "subscribersDelta": 20000,
+      "subscribers": 4.97,
+      "viewsDelta": 5575602,
+      "views": 818273196
+    },
+    {
+      "date": "2021/01/03",
+      "subscribersDelta": 30000,
+      "subscribers": 5000000,
+      "viewsDelta": 5051886,
+      "views": 823325082
+    },
+    {
+      "date": "2021/01/04",
+      "subscribersDelta": 20000,
+      "subscribers": 5.02,
+      "viewsDelta": 4157126,
+      "views": 827482208
+    },
+    {
+      "date": "2021/01/05",
+      "subscribersDelta": 20000,
+      "subscribers": 5.04,
+      "viewsDelta": 3457616,
+      "views": 830939824
+    },
+    {
+      "date": "2021/01/06",
+      "subscribersDelta": 10000,
+      "subscribers": 5.05,
+      "viewsDelta": 2946330,
+      "views": 833886154
+    },
+    {
+      "date": "2021/01/07",
+      "subscribersDelta": 10000,
+      "subscribers": 5.06,
+      "viewsDelta": 2444862,
+      "views": 836331016
+    },
+    {
+      "date": "2021/01/08",
+      "subscribersDelta": 20000,
+      "subscribers": 5.08,
+      "viewsDelta": 2348333,
+      "views": 838679349
+    },
+    {
+      "date": "2021/01/09",
+      "subscribersDelta": 10000,
+      "subscribers": 5.09,
+      "viewsDelta": 2199759,
+      "views": 840879108
+    },
+    {
+      "date": "2021/01/10",
+      "subscribersDelta": 10000,
+      "subscribers": 5.1,
+      "viewsDelta": 2040565,
+      "views": 842919673
+    },
+    {
+      "date": "2021/01/11",
+      "subscribersDelta": 10000,
+      "subscribers": 5.11,
+      "viewsDelta": 1917735,
+      "views": 844837408
+    },
+    {
+      "date": "2021/01/12",
+      "subscribersDelta": 10000,
+      "subscribers": 5.12,
+      "viewsDelta": 1800616,
+      "views": 846638024
+    },
+    {
+      "date": "2021/01/13",
+      "subscribersDelta": 0,
+      "subscribers": 0,
+      "viewsDelta": 293750,
+      "views": 846931774
+    }
+  ]
   }

@@ -107,7 +107,7 @@ window.addEventListener("load", function(){
 
   async function getTrends(region='KZ'){
     //const res = await fetch('https://www.googleapis.com/youtube/v3/videos?part=contentDetails&chart=mostPopular&regionCode=KZ&maxResults=24&key=AIzaSyAkg7cQyWWa0k0goRzUJy6hS2-Z3afb_8k')
-    const res = await fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode='+region+'&maxResults=100&key=AIzaSyAkg7cQyWWa0k0goRzUJy6hS2-Z3afb_8k')
+    const res = await fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&regionCode='+region+'&maxResults=24&key=AIzaSyAkg7cQyWWa0k0goRzUJy6hS2-Z3afb_8k')
     const data =  await res.json()
     let html = ''
     data.items.map((item) => {
@@ -136,7 +136,7 @@ window.addEventListener("load", function(){
 Promise.all([getTrends()])
    .then((data) => {
     document.querySelector(".loader").style.display = "none"
-    console.log(data)
+    
 
     var byCategory = []
     var mydata = data[0].items.map((i) => {byCategory[i.snippet.categoryId] = (byCategory[i.snippet.categoryId])?byCategory[i.snippet.categoryId]+1:1})

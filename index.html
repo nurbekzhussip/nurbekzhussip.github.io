@@ -113,7 +113,7 @@ window.addEventListener("load", function(){
     data.items.map((item) => {
       html+= `<div class="col-lg-3">
               <div class="item-video">
-                <img src="`+item.snippet.thumbnails.standard.url+`" alt="`+item.snippet.localized.title+`">
+                <img src="`+item.snippet?.thumbnails?.standard?.url+`" alt="`+item.snippet.localized.title+`">
                 <div class="layer">
                   <span class="material-icons"  data-toggle="modal" data-target="#exampleModal">addchart</span>
                 </div>

@@ -7,5 +7,5 @@ This project help to know youtube LIVE statistics in Kazakhstan.
 - research channel of Navalny (subscribers/unsubscribers/views) - this is hot channel in Russia and Kazakhstan
 
 
-Link https://nurbekzhussip.github.io
+DEMO https://nurbekzhussip.github.io
 
